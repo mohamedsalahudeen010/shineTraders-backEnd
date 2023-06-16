@@ -30,7 +30,7 @@ app.use("/userLogin",userLoginRouter);
 app.use("/userSignUp",userSignUpRouter);
 // app.use("/products",isSignedInUser||isSignedInAdmin,productsRouter);
 // app.use("/products/admin",isSignedInAdmin,productsRouterAdmin)
-app.use("/products",isSignedInUser || isSignedInAdmin,productsRouter);
-app.use("/products/admin",isSignedInUser || isSignedInAdmin,productsRouterAdmin)
+app.use("/products",isSignedInUser,productsRouter);
+app.use("/products/admin",isSignedInUser,productsRouterAdmin)
 app.use("/cart",isSignedInUser || isSignedInAdmin,cartRouter)
 app.use("/ordersUser",isSignedInUser||isSignedInAdmin,orderRouter)
