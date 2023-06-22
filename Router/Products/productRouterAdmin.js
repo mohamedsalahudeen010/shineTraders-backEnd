@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
   });
 
 
- router.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
       const product = await Products.findOne({$and:[{name:req.body.name},{quantity:req.body.quantity}]});
       if(product){
