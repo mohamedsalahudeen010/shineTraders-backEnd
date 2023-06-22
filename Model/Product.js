@@ -4,7 +4,6 @@ const productScheme= mongoose.Schema({
     name:{
         type:String,
         required:true,
-        maxlength:32,
         trim:true
     },
     prize:{
