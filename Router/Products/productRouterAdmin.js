@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 
  router.post("/", async (req, res) => {
     try {
-      const product = await Products.findOne({},{name:req.body.name,_id:0,quantity:req.body.quantity});
+      const product = await Products.findOne({$and:[{name:req.body.name},{quantity:req.body.quantity}]});
       if(product){
         return  res.status(409).json({message:"Product Already Exist"})
       }
@@ -31,6 +31,7 @@ router.get("/", async (req, res) => {
       res.status(500).json("Server Error");
     }
   });
+
 
 
   router.put("/:id", async (req, res) => {
