@@ -18,9 +18,13 @@ router.get("/", async (req, res) => {
   });
 
 
-  router.post("/", async (req, res) => {
+ router.post("/", async (req, res) => {
     try {
-      const product = await Products.create(req.body);
+      const product = await Products.findOne({},{name:req.body.name,_id:0,quantity:req.body.quantity});
+      if(product){
+        return  res.status(409).json({message:"Product Already Exist"})
+      }
+      product=await Products.create(req.body)
       res.status(200).json("Products added Successfully");
     } catch (error) {
       console.log(error);
