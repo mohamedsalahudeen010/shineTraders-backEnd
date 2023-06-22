@@ -18,9 +18,10 @@ router.get("/", async (req, res) => {
   });
 
 
-router.post("/", async (req, res) => {
+  router.post("/", async (req, res) => {
     try {
-      const product = await Products.findOne({$and:[{name:{$eq:req.body.name}},{quantity:{$eq:req.body.quantity}}]});
+      let product = await Products.findOne({$and:[{name:{$eq:req.body.name}},{quantity:{$eq:req.body.quantity}}]});;
+      console.log(product)
       if(product){
         return  res.status(409).json({message:"Product Already Exist"})
       }
