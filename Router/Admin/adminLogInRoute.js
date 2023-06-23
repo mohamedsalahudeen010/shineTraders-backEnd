@@ -1,35 +1,35 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { Admin, genAuthToken } from "../../Model/admin";
+import { Admin, genAuthToken } from "../../Model/admin.js";
 
 
 const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const user = await Admin.findOne({ email: req.body.email });
+    const admin = await Admin.findOne({ email: req.body.email });
 
-    if (!user) {
+    if (!admin) {
       return res.status(404).json({ message: "invalid credentials email" });
     }
 
     const passwordValidate = await bcrypt.compare(
       req.body.password,
-      user.password
+      admin.password
     );
-    console.log(user);
+   
     console.log(passwordValidate);
     if (!passwordValidate) {
       return res.status(404).json({ message: "invalid credentials password" });
     }
-    const authToken = genAuthToken(user.id);
+    const authToken = genAuthToken(admin.id);
 
     res
       .status(200)
       .json({
-        message: "User logged in successfully",
+        message: "Admin logged in successfully",
         token: authToken,
-        user,
+        admin,
       });
   } catch (error) {
     console.log("error: ", error);
