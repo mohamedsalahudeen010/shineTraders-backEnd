@@ -13,6 +13,8 @@ import { isSignedInUser } from "./controllers/authUser.js";
 import { isSignedInAdmin } from "./controllers/authAdmin.js";
 import { cartRouter } from "./Router/Cart/cartRouter.js";
 import { orderRouter } from "./Router/OrdersRouter/ordersRouter.js";
+import { adminSignUpRouter } from "./Router/Admin/adminSignUpRoute.js";
+import { adminLoginRouter } from "./Router/Admin/adminLogInRoute.js";
 
  dbConnection()
 
@@ -28,9 +30,11 @@ import { orderRouter } from "./Router/OrdersRouter/ordersRouter.js";
 
 app.use("/userLogin",userLoginRouter);
 app.use("/userSignUp",userSignUpRouter);
+app.use("/adminLogIn",adminLoginRouter)
+app.use("/adminSignUp",adminSignUpRouter)
 // app.use("/products",isSignedInUser||isSignedInAdmin,productsRouter);
 // app.use("/products/admin",isSignedInAdmin,productsRouterAdmin)
 app.use("/products",productsRouter);
 app.use("/products/admin",productsRouterAdmin)
-app.use("/cart",cartRouter)
-app.use("/ordersUser",orderRouter)
+app.use("/cart",isSignedInUser || isSignedInAdmin,cartRouter)
+app.use("/ordersUser",isSignedInUser||isSignedInAdmin,orderRouter)
