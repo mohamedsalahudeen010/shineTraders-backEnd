@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
         console.log(req.query)
         try { 
           const cart = await Cart.find({
-            userMail:"virat123@gmail.com"});
+            userMail:req.query});
           if (!cart) {
             res.status(400).json({ message: "can't get the Cart data" });
           }
