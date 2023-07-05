@@ -33,12 +33,12 @@ router.post("/", async (req, res) => {
 
 
 
+   
     router.get("/", async (req, res) => {
-        console.log(req.query)
-       const query=req.query;
+      const query=req.query
+        console.log("QUERY :",query)
         try { 
-          const cart = await Cart.find({
-            userMail:query});
+          const cart = await Cart.find(query);
           if (!cart) {
             res.status(400).json({ message: "can't get the Cart data" });
           }
@@ -48,6 +48,7 @@ router.post("/", async (req, res) => {
           res.status(500).json("Server Error");
         }
       });
+
 
 
 
