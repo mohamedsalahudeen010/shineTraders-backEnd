@@ -27,10 +27,10 @@ const adminSchema=mongoose.Schema({
     }
 })
 
-const genAuthToken=(id)=>{
-    jwt.sign({id},process.env.SECRET_CODE_ADMIN)
+const genAdminAuthToken=(id)=>{
+    return jwt.sign({id},process.env.SECRET_CODE_ADMIN)
 }
 
 const Admin=mongoose.model("admin",adminSchema)
 
-export{Admin,genAuthToken}
+export{Admin,genAdminAuthToken}
