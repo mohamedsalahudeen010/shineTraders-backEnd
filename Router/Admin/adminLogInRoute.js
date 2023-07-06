@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { Admin, genAuthToken } from "../../Model/admin.js";
+import { Admin, genAdminAuthToken } from "../../Model/admin.js";
 
 
 const router = express.Router();
@@ -22,15 +22,20 @@ router.post("/", async (req, res) => {
     if (!passwordValidate) {
       return res.status(404).json({ message: "invalid credentials password" });
     }
-    const authToken = genAuthToken(admin.id);
+    const authAdminToken = genAdminAuthToken(admin.id);
 
-    res
+    console.log("authToken",authAdminToken)
+
+    return res
       .status(200)
       .json({
         message: "Admin logged in successfully",
-        token: authToken,
+        token: authAdminToken,
         admin,
       });
+
+     
+
   } catch (error) {
     console.log("error: ", error);
     res.status(500).json({ message: "Internal Server Error" });
