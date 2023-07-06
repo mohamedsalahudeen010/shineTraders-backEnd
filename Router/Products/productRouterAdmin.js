@@ -52,5 +52,32 @@ router.get("/", async (req, res) => {
     }
   });
 
+router.delete("/:id",async(req,res)=>{
+    try {
+        const deleteContent=await Products.findByIdAndDelete(
+            {_id:req.params.id},
+        )   
+        if(!deleteContent){return res.status(400).json({message:"Couldn'nt delete your content"})}
+        return res.status(200).json({message:"Deleted Successfully"})
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message:"Internal server error"})
+    }
+
+    
+})
+
+router.delete("/all",async(req,res)=>{
+  try {
+      const deleteWholeCart=await Products.deleteMany(
+          {},
+      )   
+      if(!deleteWholeCart){return res.status(400).json({message:"Couldn'nt delete your content"})}
+      return res.status(200).json({message:"Deleted Successfully"})
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({message:"Internal server error"})
+  }  
+})
 
   export const productsRouterAdmin = router;
