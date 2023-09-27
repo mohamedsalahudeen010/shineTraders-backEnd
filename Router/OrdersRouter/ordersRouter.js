@@ -8,7 +8,7 @@ const router=express.Router();
 
 router.post("/", async (req, res) => {
     try {
-      const cart = await Order.create(req.body);
+      const order = await Order.create(req.body);
       res.status(200).json("Products added Successfully");
     } catch (error) {
       console.log(error);
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
     
     
     try {
-      const cart = await Order.findOneAndUpdate(
+      const order = await Order.findOneAndUpdate(
         { _id: req.params.id },
       { $set: req.body },
       { new: true });
@@ -34,29 +34,29 @@ router.post("/", async (req, res) => {
 
 
 
-    router.get("/", async (req, res) => {
-        console.log(req.query)
-        try { 
-          const cart = await Order.find({
-            userMail:"virat123@gmail.com"});
-          if (!cart) {
-            res.status(400).json({ message: "can't get the Cart data" });
-          }
-          res.status(200).json(cart);
-        } catch (error) {
-          console.log(error);
-          res.status(500).json("Server Error");
+  router.get("/", async (req, res) => {
+    const query=req.query
+      
+      try { 
+        const order = await Order.find(query);
+        if (!order) {
+          res.status(400).json({ message: "can't get the Orders data" });
         }
-      });
+        res.status(200).json(order);
+      } catch (error) {
+        console.log(error);
+        res.status(500).json("Server Error");
+      }
+    });
 
 
 
       router.delete("/:id",async(req,res)=>{
         try {
-            const deleteContent=await Order.findByIdAndDelete(
+            const deleteOrder=await Order.findByIdAndDelete(
                 {_id:req.params.id},
             )   
-            if(!deleteContent){return res.status(400).json({message:"Couldn'nt delete your content"})}
+            if(!deleteOrder){return res.status(400).json({message:"Couldn'nt delete your content"})}
             return res.status(200).json({message:"Deleted Successfully"})
         } catch (error) {
             console.log(error);
