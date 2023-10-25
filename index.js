@@ -36,5 +36,5 @@ app.use("/adminSignUp",adminSignUpRouter)
 // app.use("/products/admin",isSignedInAdmin,productsRouterAdmin)
 app.use("/products",productsRouter);
 app.use("/products/admin",isSignedInAdmin,productsRouterAdmin)
-app.use("/cart", isSignedInAdmin || isSignedInUser ,cartRouter)
+app.use("/cart", isSignedInAdmin||isSignedInUser,cartRouter)
 app.use("/order",isSignedInUser || isSignedInAdmin,orderRouter)
