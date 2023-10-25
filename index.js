@@ -39,4 +39,4 @@ app.use("/products",productsRouter);
 app.use("/products/admin",isSignedInAdmin,productsRouterAdmin)
 app.use("/cart",isSignedInUser,cartRouter)
 app.use("/order",isSignedInUser,orderRouter)
-app.use("/order/admin",orderRouterAdmin)
+app.use("/orders/admin",orderRouterAdmin)
