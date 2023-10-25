@@ -15,6 +15,7 @@ import { cartRouter } from "./Router/Cart/cartRouter.js";
 import { orderRouter } from "./Router/OrdersRouter/ordersRouter.js";
 import { adminSignUpRouter } from "./Router/Admin/adminSignUpRoute.js";
 import { adminLoginRouter } from "./Router/Admin/adminLogInRoute.js";
+import { orderRouterAdmin } from "./Router/OrdersRouter/ordersRouterAdmin.js";
 
  dbConnection()
 
@@ -37,4 +38,5 @@ app.use("/adminSignUp",adminSignUpRouter)
 app.use("/products",productsRouter);
 app.use("/products/admin",isSignedInAdmin,productsRouterAdmin)
 app.use("/cart",isSignedInUser,cartRouter)
-app.use("/order",isSignedInUser || isSignedInAdmin,orderRouter)
+app.use("/order",isSignedInUser,orderRouter)
+app.use("/order/admin",isSignedInAdmin,orderRouterAdmin)
