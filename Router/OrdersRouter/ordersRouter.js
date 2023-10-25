@@ -38,7 +38,14 @@ router.post("/", async (req, res) => {
     const query=req.query
       
       try { 
-        const order = await Order.find(query);
+        let order
+        if(query){
+          order = await Order.find(query)
+        }
+        else{
+          order = await Order.find()
+        }
+        
         if (!order) {
           res.status(400).json({ message: "can't get the Orders data" });
         }
@@ -48,6 +55,7 @@ router.post("/", async (req, res) => {
         res.status(500).json("Server Error");
       }
     });
+
 
 
 
