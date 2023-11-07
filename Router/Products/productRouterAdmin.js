@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 
   router.post("/", async (req, res) => {
     try {
-      let product = await Products.findOne({$and:[{name:{$eq:req.body.name}},{quantity:{$eq:req.body.quantity}}]});;
+      let product = await Products.findOne({$and:[{name:{$eq:req.body.name}},{quantity:{$eq:req.body.quantity}},{type:{$eq:req.body.type}},{type2:{$eq:req.body.type2}}]});;
       console.log(product)
       if(product){
         return  res.status(409).json({message:"Product Already Exist"})
@@ -32,7 +32,6 @@ router.get("/", async (req, res) => {
       res.status(500).json("Server Error");
     }
   });
-
 
 
   router.put("/:id", async (req, res) => {
@@ -52,7 +51,8 @@ router.get("/", async (req, res) => {
     }
   });
 
-router.delete("/:id",async(req,res)=>{
+
+  router.delete("/:id",async(req,res)=>{
     try {
         const deleteContent=await Products.findByIdAndDelete(
             {_id:req.params.id},
@@ -67,6 +67,8 @@ router.delete("/:id",async(req,res)=>{
     
 })
 
+
+
 router.delete("/all",async(req,res)=>{
   try {
       const deleteWholeCart=await Products.deleteMany(
@@ -77,7 +79,10 @@ router.delete("/all",async(req,res)=>{
   } catch (error) {
       console.log(error);
       res.status(500).json({message:"Internal server error"})
-  }  
+  }
+
+  
 })
+
 
   export const productsRouterAdmin = router;
