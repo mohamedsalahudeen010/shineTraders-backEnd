@@ -1,5 +1,5 @@
 import express from "express"
-import Gallery from "../../Model/Gallery";
+import Gallery from "../../Model/Gallery.js";
 
 const router=express.Router();
 
