@@ -10,7 +10,7 @@ const galleryScheme= mongoose.Schema({
         type:[], 
     },
     location:{
-        type:Strin
+        type:String
     },
     description:{
         type:String
