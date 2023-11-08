@@ -40,4 +40,4 @@ app.use("/products/admin",isSignedInAdmin,productsRouterAdmin)
 app.use("/cart",isSignedInUser,cartRouter)
 app.use("/order",isSignedInUser,orderRouter)
 app.use("/orders/admin",isSignedInAdmin,orderRouterAdmin)
-app.use("/gallery",galleryRouter)
+
