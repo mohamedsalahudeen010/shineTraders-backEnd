@@ -16,7 +16,7 @@ import { orderRouter } from "./Router/OrdersRouter/ordersRouter.js";
 import { adminSignUpRouter } from "./Router/Admin/adminSignUpRoute.js";
 import { adminLoginRouter } from "./Router/Admin/adminLogInRoute.js";
 import { orderRouterAdmin } from "./Router/OrdersRouter/ordersRouterAdmin.js";
-
+import { galleryRouter } from "./Router/Gallery/gallery.js";
  dbConnection()
 
  const PORT=process.env.PORT
